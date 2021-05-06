@@ -52,14 +52,6 @@ def openConfig(parent):
 			configHandler.setConfig(configValues)
 			newWindow.destroy()
 
-		#var1 = tk.IntVar()
-		#c1 = tk.Checkbutton(options, text='Python',variable=var1, onvalue=1, offvalue=0)
-		#c1.pack()
-
-		var = tk.IntVar()
-		chk = tk.Checkbutton(options, text="normal", variable=var)
-		chk.pack(side=tk.LEFT, anchor=tk.W, expand=tk.YES)
-
 		# room form
 		roomForm = ttk.Label(options, text="Default Room:")
 		roomForm.pack(fill='x', expand=True)
