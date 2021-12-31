@@ -36,23 +36,50 @@ def openAlfaview(room, username, password, displayName):
 def editConfig():
     config = configHandler.getConfig()
 
-    tmp_room = input('What room do you want to join by default?: ')
+    # set room
+    print()
+    print('What room do you want to join by default?')
+    if config['myRoom'] == None:
+        print('Enter value or press ENTER to skip: ', end='')
+    else:
+        print('Enter value or press ENTER to keep current value (', config['myRoom'] ,'): ', sep='', end='')
+    tmp_room = input()
     if tmp_room != '':
         config['myRoom'] = tmp_room
 
-    tmp_username = input('Your HFU account username: ')
+    # set username
+    print()
+    print('Your HFU account username?')
+    if config['myUsername'] == None:
+        print('Enter value or press ENTER to skip: ', end='')
+    else:
+        print('Enter value or press ENTER to keep current value (', config['myUsername'] ,'): ', sep='', end='')
+    tmp_username = input()
     if tmp_username != '':
         config['myUsername'] = tmp_username
 
-    tmp_password = input('Your HFU account password: ')
+    # set password
+    print()
+    print('Your HFU account password?')
+    if config['myPassword'] == None:
+        print('Enter value or press ENTER to skip: ', end='')
+    else:
+        print('Enter value or press ENTER to keep current value (', config['myPassword'] ,'): ', sep='', end='')
+    tmp_password = input()
     if tmp_password != '':
         config['myPassword'] = tmp_password
 
-    tmp_displayName = input('What should we call you?: ')
+    # set displayName
+    print()
+    print('What should we call you?')
+    if config['myName'] == None:
+        print('Enter value or press ENTER to skip: ', end='')
+    else:
+        print('Enter value or press ENTER to keep current value (', config['myName'] ,'): ', sep='', end='')
+    tmp_displayName = input()
     if tmp_displayName != '':
         config['myName'] = tmp_displayName
 
-    print(config['myRoom'])
     configHandler.setConfig(config)
 
 
