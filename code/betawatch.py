@@ -42,7 +42,7 @@ def editConfig():
     if config['myRoom'] == None:
         print('Enter value or press ENTER to skip: ', end='')
     else:
-        print('Enter value or press ENTER to keep current value (', config['myRoom'] ,'): ', sep='', end='')
+        print('Enter value or press ENTER to keep current value ("', config['myRoom'] ,'"): ', sep='', end='')
     tmp_room = input()
     if tmp_room != '':
         config['myRoom'] = tmp_room
@@ -53,7 +53,7 @@ def editConfig():
     if config['myUsername'] == None:
         print('Enter value or press ENTER to skip: ', end='')
     else:
-        print('Enter value or press ENTER to keep current value (', config['myUsername'] ,'): ', sep='', end='')
+        print('Enter value or press ENTER to keep current value ("', config['myUsername'] ,'"): ', sep='', end='')
     tmp_username = input()
     if tmp_username != '':
         config['myUsername'] = tmp_username
@@ -75,7 +75,7 @@ def editConfig():
     if config['myName'] == None:
         print('Enter value or press ENTER to skip: ', end='')
     else:
-        print('Enter value or press ENTER to keep current value (', config['myName'] ,'): ', sep='', end='')
+        print('Enter value or press ENTER to keep current value ("', config['myName'] ,'"): ', sep='', end='')
     tmp_displayName = input()
     if tmp_displayName != '':
         config['myName'] = tmp_displayName
