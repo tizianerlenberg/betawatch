@@ -1,5 +1,7 @@
 import argparse
 from getpass import getpass
+from signal import signal, SIGINT
+from sys import exit
 
 import configHandler
 
@@ -117,5 +119,12 @@ def main():
     openAlfaview(args.room, args.username, args.password, args.displayName)
 
 
+def end_SIGINT(signal_received, frame):
+    # clean up and exit
+    print('Goodbye!')
+    exit(0)
+
+
 if __name__ == "__main__":
+    signal(SIGINT, end_SIGINT)
     main()
