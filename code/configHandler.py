@@ -24,7 +24,8 @@ def getConfig(path='config.json'):
 			configValues['myName'] = None
 		# TODO: rest dazu
 
-		configValues['myPassword'] = fernet.decrypt(configValues['myPassword'].encode()).decode()
+		if type(configValues['myPassword']) is str:
+			configValues['myPassword'] = fernet.decrypt(configValues['myPassword'].encode()).decode()
 
 		return configValues
 	else:
