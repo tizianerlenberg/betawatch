@@ -31,8 +31,11 @@ def getConfig(path='config.json'):
 		return { 'myRoom': None, 'myUsername': None, 'myPassword': None, 'myName': None } # TODO: rest dazu
 
 def setConfig(configValues, path='config.json'):
-    configFile= open(path, 'w')
-    configValues['myPassword'] = fernet.encrypt(configValues['myPassword'].encode()).decode()
-    configContent = json.dumps(configValues)
-    configFile.write(configContent)
-    configFile.close()
+	if type(configValues['myPassword']) is str:
+		configValues['myPassword'] = fernet.encrypt(configValues['myPassword'].encode()).decode()
+
+	configContent = json.dumps(configValues)
+
+	configFile= open(path, 'w')
+	configFile.write(configContent)
+	configFile.close()
