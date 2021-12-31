@@ -69,8 +69,8 @@ def editConfig():
     if config['myPassword'] == None:
         print('Enter value or press ENTER to skip: ', end='')
     else:
-        print('Enter value or press ENTER to keep current value: ', sep='', end='')
-    tmp_password = input()
+        print('Enter value or press ENTER to keep current value: ', sep='', end='', flush=True)
+    tmp_password = getpass('')
     if tmp_password != '':
         config['myPassword'] = tmp_password
 
@@ -114,9 +114,9 @@ def main():
         config['myRoom'] = input('What room do you want to join?: ')
     if config['myUsername'] == None:
         config['myUsername'] = input('Your HFU account username: ')
-    if config['myPassword'] == None:
-        print('Your password for the HFU account "', config['myUsername'], '": ', sep='', end='')
-        config['myPassword'] = getpass()
+    if config['myPassword'] == None or args.username != None:
+        print('Your password for the HFU account "', config['myUsername'], '": ', sep='', end='', flush=True)
+        config['myPassword'] = getpass('')
     if config['myName'] == None:
         config['myName'] = input('What should we call you?: ')
 
