@@ -62,7 +62,10 @@ def editConfig():
 
     # set password
     print()
-    print('Your HFU account password?')
+    if config['myUsername'] == None:
+        print('Your HFU account password?')
+    else:
+        print('Your password for the HFU account "', config['myUsername'],'"?', sep='')
     if config['myPassword'] == None:
         print('Enter value or press ENTER to skip: ', end='')
     else:
@@ -112,7 +115,8 @@ def main():
     if config['myUsername'] == None:
         config['myUsername'] = input('Your HFU account username: ')
     if config['myPassword'] == None:
-        config['myPassword'] = getpass('Your HFU account password: ')
+        print('Your password for the HFU account "', config['myUsername'], '": ', sep='', end='')
+        config['myPassword'] = getpass()
     if config['myName'] == None:
         config['myName'] = input('What should we call you?: ')
 
