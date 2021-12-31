@@ -64,7 +64,7 @@ def editConfig():
     if config['myPassword'] == None:
         print('Enter value or press ENTER to skip: ', end='')
     else:
-        print('Enter value or press ENTER to keep current value (', config['myPassword'] ,'): ', sep='', end='')
+        print('Enter value or press ENTER to keep current value: ', sep='', end='')
     tmp_password = input()
     if tmp_password != '':
         config['myPassword'] = tmp_password
