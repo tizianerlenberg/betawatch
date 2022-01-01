@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os, sys
 
 def start(url, bandWidthUsage='normal', noUpdate=0, skipQuickSetup=1, alfaviewPath=''):
