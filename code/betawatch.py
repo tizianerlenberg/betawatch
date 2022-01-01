@@ -1,5 +1,6 @@
 import argparse
 from getpass import getpass
+from platform import system
 from signal import signal, SIGINT
 from sys import exit
 
@@ -24,6 +25,8 @@ parser.add_argument('-n', '--displayName',
 parser.add_argument('--config',
     action='store_true',
     help='Edit the configuration file')
+parser.add_argument('--configDir',
+    help='Specify the directory where the configuration and caching files are stored')
 parser.add_argument('--noUI',
     action='store_true',
     help='Execute this script in the terminal only')
@@ -35,8 +38,8 @@ def openAlfaview(room, username, password, displayName):
     print('TODO: OPEN Alfaview')
 
 
-def editConfig():
-    config = configHandler.getConfig()
+def editConfig(configDir = '.'):
+    config = configHandler.getConfig(configDir)
 
     # set room
     print()
@@ -85,21 +88,31 @@ def editConfig():
     if tmp_displayName != '':
         config['myName'] = tmp_displayName
 
-    configHandler.setConfig(config)
+    configHandler.setConfig(config, configDir)
 
 
-def startGUI():
+def startGUI(configDir = '.'):
     print('TODO: START GUI')
 
 
 def main():
+    if args.configDir == None:
+        if system() == 'Linux':
+            args.configDir = '~/.config/betawatch'
+        elif system() == 'Windows':
+            args.configDir = '%AppData%\\..\\Local\\betawatch\\'
+        elif system() == 'Darwin':
+            args.configDir = '~/Library/Application Support/betawatch'
+        else:
+            args.configDir = '.'
+
     if args.config:
-        editConfig()
+        editConfig(args.configDir)
 
     if not args.noUI and args.room == None and args.username == None and args.password == None and args.displayName == None and not args.config:
-        startGUI()
+        startGUI(args.configDir)
 
-    config = configHandler.getConfig()
+    config = configHandler.getConfig(args.configDir)
 
     if args.room != None:
         config['myRoom'] = args.room
