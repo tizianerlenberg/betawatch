@@ -38,13 +38,14 @@ def retrieveCache(cacheValues, key):
         if item['key'] == key:
             return item
 
-def start(myRoom, myUsername, myPassword, myName, timeout=15, alfaviewPath, bandWidthUsage='normal', noUpdate=0, skipQuickSetup=1, configDir='.'):
+def start(myRoom, myUsername, myPassword, myName, alfaviewPath='/opt/alfaview/alfaview', timeout=15, bandWidthUsage='normal', noUpdate=0, skipQuickSetup=1, configDir='./'):
     cacheValues= getCacheFile(configDir + 'cache.json')
     cacheValues= cleanCache(cacheValues)
     cachedItem= retrieveCache(cacheValues, myRoom + myUsername + myName)
     if cachedItem == None:
-        url= hfuLogin.getUrl(myRoom, myUsername, myPassword, myName, geckoLogPath=configDir+'/geckodriver.log', webdriverPath=configDir, timeout=timeout)
+        url= hfuLogin.getUrl(myRoom, myUsername, myPassword, myName, geckoLogPath=configDir+'geckodriver.log', webdriverPath=configDir, timeout=timeout)
         cachedItem= {'timestamp': time.time(), 'key': myRoom + myUsername + myName, 'url': url}
         cacheValues.append(cachedItem)
+        setCacheFile(cacheValues, configDir + 'cache.json')
         
     alfaviewEngine.start(cachedItem['url'], bandWidthUsage=bandWidthUsage, noUpdate=noUpdate, skipQuickSetup=skipQuickSetup, alfaviewPath=alfaviewPath)
