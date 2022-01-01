@@ -1,0 +1,8 @@
+code/__pycache__
+
+code/geckodriver
+code/geckodriver.exe
+code/geckodriver.log
+
+code/config.json
+code/cache.json
